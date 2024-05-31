@@ -204,7 +204,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let offsetY = 0;
 
     terminal.addEventListener("dragstart", (e) => {
-        // e.dataTransfer.setData("text/plain", null); // Necessario per Firefox
         terminal.classList.add("dragging");
         offsetX = e.offsetX;
         offsetY = e.offsetY;
