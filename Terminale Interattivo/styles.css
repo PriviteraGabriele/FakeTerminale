@@ -1,5 +1,8 @@
 body {
-    background-color: #1e1e1e;
+    background-image: url("./img/sfondo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     color: #cccccc;
     font-family: "Courier New", Courier, monospace;
     display: flex;
@@ -108,4 +111,33 @@ body {
 
 #prompt {
     color: #33ff33;
+}
+
+#placeholder {
+    display: none;
+}
+
+#restoreContainer {
+    position: fixed;
+    top: 35px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#restoreButton img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+#restoreButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }

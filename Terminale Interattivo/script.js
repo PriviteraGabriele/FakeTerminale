@@ -4,8 +4,11 @@ const terminalOutput = document.getElementById("terminal-output");
 const inputLine = document.querySelector(".input-line");
 
 const exitButton = document.querySelector(".close-btn");
-const ingrandisciButton = document.querySelector(".maximize-btn");
-const abbassaButton = document.querySelector(".minimize-btn");
+const restoreButton = document.getElementById('restoreButton');
+const maximizeButton = document.querySelector(".maximize-btn");
+const minimizeButton = document.querySelector(".minimize-btn");
+const placeholder = document.createElement('div');
+placeholder.id = 'placeholder';
 
 const apiKey = "cb7bdea4e23eebc003fec1a9c3b03c3d";
 
@@ -48,7 +51,7 @@ async function getWeather(apiKey, city) {
         const data = await response.json();
         printWeatherInfo(data);
     } catch (error) {
-        printOutput("Errore:", error);
+        printOutput("Errore: City not found");
     }
 }
 
@@ -175,17 +178,25 @@ terminalInput.addEventListener("keydown", function (event) {
 });
 
 exitButton.addEventListener("click", function () {
+    terminal.parentNode.insertBefore(placeholder, terminal);
     terminal.remove();
+    placeholder.style.display = 'block';
 });
 
-ingrandisciButton.addEventListener("click", function () {
+restoreButton.addEventListener("click", function () {
+    if (document.getElementById('placeholder')) {
+        placeholder.parentNode.insertBefore(terminal, placeholder);
+        placeholder.remove();
+    }
+});
+maximizeButton.addEventListener("click", function () {
     terminal.style.width = "100%";
     terminal.style.height = "100%";
 });
 
-abbassaButton.addEventListener("click", function () {
-    terminal.style.width = "50%";
-    terminal.style.height = "50%";
+minimizeButton.addEventListener("click", function () {
+    terminal.style.width = "1000px";
+    terminal.style.height = "550px";
 });
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -193,7 +204,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let offsetY = 0;
 
     terminal.addEventListener("dragstart", (e) => {
-        e.dataTransfer.setData("text/plain", null); // Necessario per Firefox
+        // e.dataTransfer.setData("text/plain", null); // Necessario per Firefox
         terminal.classList.add("dragging");
         offsetX = e.offsetX;
         offsetY = e.offsetY;
