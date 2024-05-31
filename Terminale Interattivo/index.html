@@ -8,12 +8,23 @@
     </head>
 
     <body>
-        <div class="terminal">
-            <div class="input-line">
-                <span id="prompt">thecorps@FissoGP:$</span>
-                <input type="text" id="terminal-input" autofocus />
+        <div class="terminal resizable">
+            <div class="terminal-header" draggable="true">
+                <span class="close-btn"></span>
+                <span class="minimize-btn"></span>
+                <span class="maximize-btn"></span>
+                <div class="terminal-title">thecorps@FissoGP</div>
             </div>
-            <div class="terminal-output" id="terminal-output"></div>
+            <div id="terminal-output" class="terminal-body">
+                <div class="input-line">
+                    <span id="prompt">thecorps@FissoGP:$&nbsp;</span>
+                    <div
+                        id="terminal-input"
+                        contenteditable="true"
+                        autofocus
+                    ></div>
+                </div>
+            </div>
         </div>
 
         <script src="script.js"></script>

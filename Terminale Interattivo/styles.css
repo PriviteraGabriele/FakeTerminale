@@ -1,34 +1,88 @@
 body {
     background-color: #1e1e1e;
-    color: #ffffff;
+    color: #cccccc;
     font-family: "Courier New", Courier, monospace;
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+}
+
+.resizable {
+    min-width: 400px;
+    min-height: 400px;
+    max-width: 100%;
+    max-height: 100%;
+    border: none;
+    resize: both;
+    overflow: auto;
 }
 
 .terminal {
-    background-color: #2d2d2d;
+    background-color: #1e1e1e;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    height: 70%;
-    overflow: hidden;
+    width: 1000px;
+    height: 550px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    position: absolute;
 }
 
-#input-line {
+.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.terminal-header {
     display: flex;
+    align-items: center;
+    background-color: #2d2d2d;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: grab; /* Indicatore visivo per il drag */
 }
 
-#prompt {
-    color: #6aff6a;
-    margin-right: 5px;
+.close-btn,
+.minimize-btn,
+.maximize-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.close-btn {
+    background-color: #ff5f56;
+}
+
+.minimize-btn {
+    background-color: #ffbd2e;
+}
+
+.maximize-btn {
+    background-color: #27c93f;
+}
+
+.terminal-title {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.terminal-body {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.input-line {
+    display: flex;
+    align-items: baseline;
 }
 
 #terminal-input {
@@ -36,11 +90,22 @@ body {
     border: none;
     color: #ffffff;
     outline: none;
-    flex: 1;
+    width: 75%;
+    font-size: 16px;
+    line-height: 1.4em;
+    font-family: "Courier New", Courier, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
-.terminal-output {
-    flex: 1;
-    overflow-y: auto;
-    margin-bottom: 10px;
+.command,
+.output-line {
+    color: #ffffff;
+    margin: 0;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+
+#prompt {
+    color: #33ff33;
 }
