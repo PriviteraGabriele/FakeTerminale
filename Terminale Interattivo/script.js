@@ -189,6 +189,7 @@ restoreButton.addEventListener("click", function () {
         placeholder.remove();
     }
 });
+
 maximizeButton.addEventListener("click", function () {
     terminal.style.width = "100%";
     terminal.style.height = "100%";
@@ -214,7 +215,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 
     document.addEventListener("dragover", (e) => {
-        e.preventDefault(); // Necessario per permettere il drop
+        e.preventDefault();
         const draggingElement = document.querySelector(".dragging");
         if (draggingElement) {
             draggingElement.style.left = `${e.clientX - offsetX}px`;
