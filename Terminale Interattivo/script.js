@@ -12,6 +12,11 @@ placeholder.id = 'placeholder';
 
 const apiKey = "cb7bdea4e23eebc003fec1a9c3b03c3d";
 
+/**
+ * Questa funzione stampa un messaggio nell'output del terminale.
+ * 
+ * @param {string} message 
+ */
 function printOutput(message) {
     const outputDiv = document.createElement("div");
     outputDiv.className = "output-line";
@@ -20,12 +25,20 @@ function printOutput(message) {
     terminalOutput.appendChild(inputLine);
 }
 
+/**
+ * Stampa la data e l'ora attuali nel terminale.
+ */
 function getCurrentDateTime() {
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleString();
     printOutput(formattedDate);
 }
 
+/**
+ * Effettua una richiesta HTTP GET a un URL specificato e stampa il risultato.
+ * 
+ * @param {string} url 
+ */
 function makeRequest(url) {
     fetch(url)
         .then((response) => response.json())
@@ -35,11 +48,20 @@ function makeRequest(url) {
         );
 }
 
+/**
+ * Pulisce il contenuto del terminale.
+ */
 function clearTerminal() {
     terminalOutput.innerHTML = "";
     terminalOutput.appendChild(inputLine);
 }
 
+/**
+ * Ottiene le informazioni meteo per una città specificata e le stampa nel terminale.
+ * 
+ * @param {string} apiKey 
+ * @param {string} city 
+ */
 async function getWeather(apiKey, city) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
@@ -55,6 +77,11 @@ async function getWeather(apiKey, city) {
     }
 }
 
+/**
+ * Stampa le informazioni meteo dettagliate.
+ * 
+ * @param {*} weatherData 
+ */
 function printWeatherInfo(weatherData) {
     const location = weatherData.name;
     const country = weatherData.sys.country;
@@ -78,6 +105,11 @@ function printWeatherInfo(weatherData) {
     printOutput(`Tramonto: ${sunset}`);
 }
 
+/**
+ * Ottiene una ricetta casuale e la stampa nel terminale.
+ * 
+ * @param {string} url 
+ */
 async function getMeal(url) {
     fetch(url)
         .then((response) => response.json())
@@ -85,8 +117,15 @@ async function getMeal(url) {
         .catch((error) =>
             printOutput(`Errore durante la richiesta: ${error}`)
         );
+
+    console.log(typeof data);
 }
 
+/**
+ * Stampa le informazioni dettagliate della ricetta.
+ * 
+ * @param {*} recipe 
+ */
 function printMealInfo(recipe) {
     const meal = recipe.meals[0];
     printOutput(`Nome del piatto: ${meal.strMeal}`);
@@ -95,6 +134,9 @@ function printMealInfo(recipe) {
     printOutput(`Istruzioni: ${meal.strInstructions}`);
 }
 
+/**
+ * Stampa una lista di comandi disponibili.
+ */
 function printHelpCommand() {
     printOutput("- datetime: Stampare data e orario attuali");
     printOutput(
@@ -108,6 +150,11 @@ function printHelpCommand() {
     printOutput("- help: Mostra questo elenco di comandi");
 }
 
+/**
+ * Gestisce l'input dell'utente e chiama le funzioni appropriate in base al comando inserito.
+ * 
+ * @param {string} command 
+ */
 function handleCommand(command) {
     const args = command.split(" ");
     const cmd = args.shift().toLowerCase();
@@ -149,6 +196,12 @@ function handleCommand(command) {
     }
 }
 
+/**
+ * Tronca un comando se supera una certa lunghezza.
+ * 
+ * @param {string} command 
+ * @returns {string}
+ */
 function truncateCommand(command) {
     if (command.length > 70) {
         return command.slice(0, 69) + "...";
