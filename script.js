@@ -209,6 +209,11 @@ function truncateCommand(command) {
     return command;
 }
 
+/**
+ * Gestisce l'evento di pressione dei tasti all'interno dell'input del terminale.
+ * Se viene premuto "Enter", elabora il comando inserito e lo esegue.
+ * @param {KeyboardEvent} event - L'evento keydown generato quando un tasto viene premuto.
+ */
 terminalInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -230,12 +235,20 @@ terminalInput.addEventListener("keydown", function (event) {
     terminalInput.focus();
 });
 
+/**
+ * Gestisce l'evento di click sul pulsante di chiusura del terminale.
+ * Rimuove il terminale dalla visualizzazione e lo sostituisce con un placeholder.
+ */
 exitButton.addEventListener("click", function () {
     terminal.parentNode.insertBefore(placeholder, terminal);
     terminal.remove();
     placeholder.style.display = 'block';
 });
 
+/**
+ * Gestisce l'evento di click sul pulsante di ripristino del terminale.
+ * Ripristina il terminale nella sua posizione originale rimuovendo il placeholder.
+ */
 restoreButton.addEventListener("click", function () {
     if (document.getElementById('placeholder')) {
         placeholder.parentNode.insertBefore(terminal, placeholder);
@@ -243,16 +256,28 @@ restoreButton.addEventListener("click", function () {
     }
 });
 
+/**
+ * Gestisce l'evento di click sul pulsante di massimizzazione del terminale.
+ * Espande il terminale a tutto lo schermo.
+ */
 maximizeButton.addEventListener("click", function () {
     terminal.style.width = "100%";
     terminal.style.height = "100%";
 });
 
+/**
+ * Gestisce l'evento di click sul pulsante di minimizzazione del terminale.
+ * Ridimensiona il terminale alle dimensioni predefinite.
+ */
 minimizeButton.addEventListener("click", function () {
     terminal.style.width = "1000px";
     terminal.style.height = "550px";
 });
 
+/**
+ * Gestisce l'evento di trascinamento del terminale.
+ * Consente agli utenti di trascinare il terminale all'interno della finestra del browser.
+ */
 document.addEventListener("DOMContentLoaded", (event) => {
     let offsetX = 0;
     let offsetY = 0;
