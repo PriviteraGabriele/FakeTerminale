@@ -237,7 +237,7 @@ terminalInput.addEventListener("keydown", function (event) {
 
 /**
  * Gestisce l'evento di click sul pulsante di chiusura del terminale.
- * Rimuove il terminale dalla visualizzazione e lo sostituisce con un placeholder.
+ * Rimuove il terminale e lo sostituisce con un placeholder.
  */
 exitButton.addEventListener("click", function () {
     terminal.parentNode.insertBefore(placeholder, terminal);
