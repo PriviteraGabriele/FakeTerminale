@@ -4,18 +4,18 @@ const terminalOutput = document.getElementById("terminal-output");
 const inputLine = document.querySelector(".input-line");
 
 const exitButton = document.querySelector(".close-btn");
-const restoreButton = document.getElementById('restoreButton');
+const restoreButton = document.getElementById("restoreButton");
 const maximizeButton = document.querySelector(".maximize-btn");
 const minimizeButton = document.querySelector(".minimize-btn");
-const placeholder = document.createElement('div');
-placeholder.id = 'placeholder';
+const placeholder = document.createElement("div");
+placeholder.id = "placeholder";
 
 const apiKey = "cb7bdea4e23eebc003fec1a9c3b03c3d";
 
 /**
  * Questa funzione stampa un messaggio nell'output del terminale.
- * 
- * @param {string} message 
+ *
+ * @param {string} message
  */
 function printOutput(message) {
     const outputDiv = document.createElement("div");
@@ -36,16 +36,14 @@ function getCurrentDateTime() {
 
 /**
  * Effettua una richiesta HTTP GET a un URL specificato e stampa il risultato.
- * 
- * @param {string} url 
+ *
+ * @param {string} url
  */
 function makeRequest(url) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => printOutput(JSON.stringify(data, null, 2)))
-        .catch((error) =>
-            printOutput(`Errore durante la richiesta: ${error}`)
-        );
+        .catch((error) => printOutput(`Errore durante la richiesta: ${error}`));
 }
 
 /**
@@ -58,9 +56,9 @@ function clearTerminal() {
 
 /**
  * Ottiene le informazioni meteo per una città specificata e le stampa nel terminale.
- * 
- * @param {string} apiKey 
- * @param {string} city 
+ *
+ * @param {string} apiKey
+ * @param {string} city
  */
 async function getWeather(apiKey, city) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -79,8 +77,8 @@ async function getWeather(apiKey, city) {
 
 /**
  * Stampa le informazioni meteo dettagliate.
- * 
- * @param {*} weatherData 
+ *
+ * @param {*} weatherData
  */
 function printWeatherInfo(weatherData) {
     const location = weatherData.name;
@@ -92,9 +90,7 @@ function printWeatherInfo(weatherData) {
     const sunrise = new Date(
         weatherData.sys.sunrise * 1000
     ).toLocaleTimeString();
-    const sunset = new Date(
-        weatherData.sys.sunset * 1000
-    ).toLocaleTimeString();
+    const sunset = new Date(weatherData.sys.sunset * 1000).toLocaleTimeString();
 
     printOutput(`Località: ${location}, ${country}`);
     printOutput(`Temperatura: ${temperature}°C`);
@@ -107,24 +103,22 @@ function printWeatherInfo(weatherData) {
 
 /**
  * Ottiene una ricetta casuale e la stampa nel terminale.
- * 
- * @param {string} url 
+ *
+ * @param {string} url
  */
 async function getMeal(url) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => printMealInfo(data))
-        .catch((error) =>
-            printOutput(`Errore durante la richiesta: ${error}`)
-        );
+        .catch((error) => printOutput(`Errore durante la richiesta: ${error}`));
 
     console.log(typeof data);
 }
 
 /**
  * Stampa le informazioni dettagliate della ricetta.
- * 
- * @param {*} recipe 
+ *
+ * @param {*} recipe
  */
 function printMealInfo(recipe) {
     const meal = recipe.meals[0];
@@ -138,10 +132,8 @@ function printMealInfo(recipe) {
  * Stampa una lista di comandi disponibili.
  */
 function printHelpCommand() {
-    printOutput("- datetime: Stampare data e orario attuali");
-    printOutput(
-        "- meteo [città]: Ottieni il meteo per la città specificata"
-    );
+    printOutput("- orologio: Stampare data e orario attuali");
+    printOutput("- meteo [città]: Ottieni il meteo per la città specificata");
     printOutput(
         "- request [url]: Effettua una richiesta di rete all'URL specificato e stampa il risultato in console"
     );
@@ -152,15 +144,15 @@ function printHelpCommand() {
 
 /**
  * Gestisce l'input dell'utente e chiama le funzioni appropriate in base al comando inserito.
- * 
- * @param {string} command 
+ *
+ * @param {string} command
  */
 function handleCommand(command) {
     const args = command.split(" ");
     const cmd = args.shift().toLowerCase();
 
     switch (cmd) {
-        case "datetime":
+        case "orologio":
             getCurrentDateTime();
             break;
         case "meteo":
@@ -182,9 +174,7 @@ function handleCommand(command) {
             clearTerminal();
             break;
         case "cracco":
-            getMeal(
-                "https://www.themealdb.com/api/json/v1/1/random.php"
-            );
+            getMeal("https://www.themealdb.com/api/json/v1/1/random.php");
             break;
         case "help":
             printHelpCommand();
@@ -198,8 +188,8 @@ function handleCommand(command) {
 
 /**
  * Tronca un comando se supera una certa lunghezza.
- * 
- * @param {string} command 
+ *
+ * @param {string} command
  * @returns {string}
  */
 function truncateCommand(command) {
@@ -226,9 +216,7 @@ terminalInput.addEventListener("keydown", function (event) {
             handleCommand(commandPassed);
             terminalInput.innerText = "";
         } else {
-            printOutput(
-                `<span id="prompt">thecorps@FissoGP:$</span>`
-            );
+            printOutput(`<span id="prompt">thecorps@FissoGP:$</span>`);
             terminalInput.innerText = "";
         }
     }
@@ -242,7 +230,7 @@ terminalInput.addEventListener("keydown", function (event) {
 exitButton.addEventListener("click", function () {
     terminal.parentNode.insertBefore(placeholder, terminal);
     terminal.remove();
-    placeholder.style.display = 'block';
+    placeholder.style.display = "block";
 });
 
 /**
@@ -250,7 +238,7 @@ exitButton.addEventListener("click", function () {
  * Ripristina il terminale nella sua posizione originale rimuovendo il placeholder.
  */
 restoreButton.addEventListener("click", function () {
-    if (document.getElementById('placeholder')) {
+    if (document.getElementById("placeholder")) {
         placeholder.parentNode.insertBefore(terminal, placeholder);
         placeholder.remove();
     }
