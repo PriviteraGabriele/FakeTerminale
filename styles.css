@@ -12,7 +12,7 @@ body {
     margin: 0;
 }
 
-.resizable {
+body > .resizable {
     min-width: 400px;
     min-height: 400px;
     max-width: 100%;
@@ -22,7 +22,7 @@ body {
     overflow: auto;
 }
 
-.terminal {
+body > .terminal {
     background-color: #1e1e1e;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -35,12 +35,12 @@ body {
     z-index: 2;
 }
 
-.dragging {
+.terminal.dragging {
     opacity: 0.5;
     cursor: grabbing;
 }
 
-.terminal-header {
+.terminal > .terminal-header {
     display: flex;
     align-items: center;
     background-color: #2d2d2d;
@@ -50,9 +50,9 @@ body {
     cursor: grab;
 }
 
-.close-btn,
-.minimize-btn,
-.maximize-btn {
+.terminal-header .close-btn,
+.terminal-header .minimize-btn,
+.terminal-header .maximize-btn {
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -61,31 +61,31 @@ body {
     cursor: default;
 }
 
-.close-btn {
+.terminal-header .close-btn {
     background-color: #ff5f56;
 }
 
-.minimize-btn {
+.terminal-header .minimize-btn {
     background-color: #ffbd2e;
 }
 
-.maximize-btn {
+.terminal-header .maximize-btn {
     background-color: #27c93f;
 }
 
-.terminal-title {
+.terminal-header .terminal-title {
     margin-left: 20px;
     font-size: 14px;
     color: #cccccc;
 }
 
-.terminal-body {
+.terminal > .terminal-body {
     flex-grow: 1;
     padding: 20px;
     overflow-y: auto;
 }
 
-.input-line {
+.terminal-body .input-line {
     display: flex;
     align-items: baseline;
 }
@@ -103,8 +103,8 @@ body {
     word-wrap: break-word;
 }
 
-.command,
-.output-line {
+.terminal-body .command,
+.terminal-body .output-line {
     color: #ffffff;
     margin: 0;
     font-size: 16px;

@@ -277,10 +277,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         offsetY = e.offsetY;
     });
 
-    terminal.addEventListener("dragend", (e) => {
-        terminal.classList.remove("dragging");
-    });
-
     document.addEventListener("dragover", (e) => {
         e.preventDefault();
         const draggingElement = document.querySelector(".dragging");
