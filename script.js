@@ -230,6 +230,7 @@ terminalInput.addEventListener("keydown", function (event) {
 exitButton.addEventListener("click", function () {
     terminal.parentNode.insertBefore(placeholder, terminal);
     terminal.remove();
+    clearTerminal();
     placeholder.style.display = "block";
 });
 
