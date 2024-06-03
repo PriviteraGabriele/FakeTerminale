@@ -132,7 +132,7 @@ function printMealInfo(recipe) {
  * Stampa una lista di comandi disponibili.
  */
 function printHelpCommand() {
-    printOutput("- orologio: Stampare data e orario attuali");
+    printOutput("- time: Stampare data e orario attuali");
     printOutput("- meteo [città]: Ottieni il meteo per la città specificata");
     printOutput(
         "- request [url]: Effettua una richiesta di rete all'URL specificato e stampa il risultato in console"
@@ -152,7 +152,7 @@ function handleCommand(command) {
     const cmd = args.shift().toLowerCase();
 
     switch (cmd) {
-        case "orologio":
+        case "time":
             getCurrentDateTime();
             break;
         case "meteo":
